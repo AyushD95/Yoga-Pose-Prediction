@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Pose Prediction</title>
+    <style>
+         #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
+            z-index: 1000;
+            text-align: center;
+            padding-top: 20%;
+        }
+
+         .pre{
+            font-size: 30px;
+         }
+        /* Blinking dot animation */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .blink-dot {
+            animation: blink 1s infinite;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/bkg3.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: 7%;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header nav {
+            padding-top: 15px;
+            margin-right: 14000px;
+            display: inline-block;
+        }
+
+        header nav a {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0 10px;
+            padding-left: 30px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header nav a.active {
+            color: #007bff;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.5); /* White transparent */
+            width: 100%;
+            height: 6%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 1000;
+        }
+        .container {
+            width: 18%;
+            height: 33%;
+            margin-top: -9.4%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.6); /* Transparent white */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 25px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+
+        #fileInput {
+            display: none;
+       }
+
+        #customFileInput {
+
+            background-image: url('../static/uplod.png');
+            filter: brightness(120%);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 55px;
+            height: 55px;
+
+            cursor: pointer;
+            display: block;
+            margin: 0 auto 30px;
+            font-size: 0; /* Hide text */
+            line-height: 0; /* Hide text */
+            text-indent: -9999px; /* Hide text */
+            transition: transform 0.3s; /* Smooth transition */
+        }
+
+        #customFileInput:hover {
+            transform: scale(1.1); /* Increase size on hover */
+        }
+
+        #result {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        #preview {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #preview img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+    @media screen and (max-width:600px)
+    {
+
+        header {
+
+            width: 100%;
+            height: 5%;
+
+        }
+
+        header nav {
+            padding-top: 5px;
+
+            display: inline-block;
+        }
+
+
+        header nav a {
+
+            margin: 0 -11px;
+            padding-left: 30px;
+            font-size: 19px;
+        }
+
+
+
+        .container {
+            width: 60%;
+            height: 33%;
+            margin-top: -45.4%;
+
+            padding: 20px;
+
+        }
+
+        h1 {
+            font-size: 20px;
+
+            margin-bottom: 50px;
+
+
+        }
+        footer {
+            width: 100%;
+            height: 5%;
+
+
+
+        }
+
+
+         p{
+            margin-top: 7px;
+         }
+
+
+        #customFileInput {
+
+
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 40px;
+            margin-top: -10px;
+
+        }
+
+        .pre{
+            font-size: 20px;
+            margin-top: 55%;
+         }
+
+
+
+    }
+
+    </style>
+</head>
+<body>
+
+    <header>
+
+        <nav>
+            <a href="/" class="active">Home</a>
+
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Yoga Pose Prediction</h1>
+        <form id="predictForm" action="/prediction" method="post" enctype="multipart/form-data">
+            <label for="fileInput" id="customFileInput">Choose an image</label>
+            <input type="file" accept="image/*" id="fileInput" name="file" style="display:none">
+            <button type="button" onclick="predictPose()">Predict Pose</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 All rights reserved</p>
+    </footer>
+
+    <!-- Hidden error message div -->
+    <div id="errorMessage" style="display: none;">
+        <p id="errorText"></p>
+    </div>
+
+
+      <div id="overlay">
+        <h1  class="pre" >Predicting<span class="blink-dot">.</span><span class="blink-dot">.</span><span class="blink-dot">.</span></h1>
+    </div>
+    <script>
+        function predictPose() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select an image.');
+                return;
+            }
+
+            // Show the overlay
+            document.getElementById('overlay').style.display = 'block';
+
+            // Toggle the blinking dot
+            const dots = document.getElementsByClassName('blink-dot');
+            let visible = true;
+            const toggleDot = () => {
+                for (let dot of dots) {
+                    dot.style.visibility = visible ? 'visible' : 'hidden';
+                }
+                visible = !visible;
+            };
+            const intervalId = setInterval(toggleDot, 500); // 500ms interval
+
+            // Proceed with form submission
+            document.getElementById('predictForm').submit();
+
+            // Stop the blinking after 5 seconds (adjust as needed)
+            setTimeout(() => {
+                clearInterval(intervalId);
+                for (let dot of dots) {
+                    dot.style.visibility = 'visible'; // Ensure dot is visible at the end
+                }
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>

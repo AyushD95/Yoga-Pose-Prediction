@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Pose Prediction Result</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/bkg3.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: 7%;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header nav {
+            padding-top: 15px;
+            margin-right: 14000px;
+            display: inline-block;
+        }
+
+        header nav a {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0 10px;
+            padding-left: 30px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header nav a.active {
+            color: #007bff;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.5); /* White transparent */
+            width: 100%;
+            height: 6%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+
+
+        img {
+            margin-top: 15px;
+            width:40%;
+            border-radius: 8px;
+        }
+
+        @media screen and (max-width:600px)
+        {
+          header {
+
+            width: 100%;
+            height: 5%;
+
+        }
+
+        header nav {
+            padding-top: 5px;
+
+            display: inline-block;
+        }
+
+
+        header nav a {
+
+            margin: 0 -11px;
+            padding-left: 30px;
+            font-size: 19px;
+        }
+
+         footer {
+            width: 100%;
+            height: 5%;
+
+
+
+        }
+
+            p{
+            margin-top: 7px;
+         }
+
+        h1{
+            font-size: 22px;
+
+        }
+
+        img{
+            margin-bottom: 90px;
+            width: 90%;
+            height: 40%;
+        }
+        }
+    </style>
+</head>
+<body>
+<header>
+
+        <nav>
+            <a href="/" class="active">Home</a>
+
+        </nav>
+</header>
+    <h1>Prediction Result</h1>
+
+   <img src="data:image/png;base64,{{ plot_base64 }}" alt="Prediction Plot">
+
+     <footer>
+        <p>&copy; 2024 All rights reserved</p>
+    </footer>
+</body>
+</html>
+
+
+
