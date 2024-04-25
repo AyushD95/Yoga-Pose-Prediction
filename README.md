@@ -16,21 +16,28 @@ This repository contains code for a Flask web application that predicts yoga pos
 ```
   git clone https://github.com/AyushD95/Yoga-Pose_Predict.git
 ```
+
+#### 2. Download Dataset:
+As it is not trained you will need to provide data use below kaggele dataset download the dataset and extract it to git cloned folder named Yoga-Pose_Predict extract it in new folder name it as Data .
+```
+  https://www.kaggle.com/datasets/tr1gg3rtrash/yoga-posture-dataset
+``` 
+
+
+#### 3. Install the required Python packages:
 ```
   cd Yoga-Pose_Predict
 ```
-
-#### 2. Install the required Python packages:
 ```
   pip install -r requirements.txt
 ```
 
-#### 3. Run the Flask application:
+#### 4. Run the Flask application:
 ```
   python app.py
 ```
 
-#### 4. Open a web browser and go to below address use the application
+#### 5. Open a web browser and go to below address use the application
 ```
   http://localhost:5000
 ```
@@ -47,5 +54,6 @@ If you find this project interesting or useful, feel free to connect with me on 
 
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayushdahiwale/)
+
 
 
