@@ -49,7 +49,7 @@ As it is not trained you will need to provide data use below kaggele dataset dow
 ##### 3. The predicted pose will be displayed below the image.
 
 ## Follow Me on LinkedIn
-If you find this project interesting or useful, feel free to connect with me on LinkedIn for more updates and projects.
+If you find this project interesting or useful feel free to connect with me on LinkedIn for more updates and projects.
 
 
 
